@@ -9,7 +9,7 @@ export async function run() {
 
     it('Should instantiate the RealtimeAPI with no apiKey', () => {
       realtime = new RealtimeAPI({
-        url: "wss://openai-hu-east-us2.openai.azure.com/openai/realtime?api-version=2024-10-01-preview&deployment=gpt-4o-realtime-preview",
+        url: "wss://xxx.openai.azure.com/openai/realtime?api-version=2024-10-01-preview&deployment=gpt-4o-realtime-preview",
         debug,
       });
 
@@ -34,13 +34,13 @@ export async function run() {
 
     it('Should instantiate the RealtimeAPI', () => {
       realtime = new RealtimeAPI({
-        url: "wss://openai-hu-east-us2.openai.azure.com/openai/realtime?api-version=2024-10-01-preview&deployment=gpt-4o-realtime-preview&api-key=510d6cd694fa49efab5fb0eccb3e633f",
-        apiKey: "510d6cd694fa49efab5fb0eccb3e633f",
+        url: "wss://xxx.openai.azure.com/openai/realtime?api-version=2024-10-01-preview&deployment=gpt-4o-realtime-preview",
+        apiKey: "process.env.AZURE_OPENAI_API_KEY",
         debug,
       });
 
       expect(realtime).to.exist;
-      expect(realtime.apiKey).to.equal("510d6cd694fa49efab5fb0eccb3e633f");
+      expect(realtime.apiKey).to.equal("process.env.AZURE_OPENAI_API_KEY");
     });
 
     it('Should connect to the RealtimeAPI', async () => {

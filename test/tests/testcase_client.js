@@ -4,43 +4,16 @@ const expect = chai.expect;
 import { RealtimeClient } from '../../index.js';
 
 export async function run({ debug = false } = {}) {
-  describe('RealtimeClient (Browser)', () => {
+  
+  describe('RealtimeClient (Node.js)', () => {
     let client;
     let realtimeEvents = [];
 
-    before(async () => {
-      const WebSocket = (await import('websocket')).default.w3cwebsocket;
-      globalThis.WebSocket = WebSocket;
-      globalThis.document = {};
-    });
 
-    after(async () => {
-      globalThis.WebSocket = void 0;
-      globalThis.document = void 0;
-    });
-
-    it('Should fail to instantiate the RealtimeClient when "dangerouslyAllowAPIKeyInBrowser" is not set', () => {
-      let err;
-
-      try {
-        client = new RealtimeClient({
-          url: "wss://openai-hu-east-us2.openai.azure.com/openai/realtime?api-version=2024-10-01-preview&deployment=gpt-4o-realtime-preview&api-key=510d6cd694fa49efab5fb0eccb3e633f",
-          apiKey: "510d6cd694fa49efab5fb0eccb3e633f",
-          debug,
-        });
-      } catch (e) {
-        err = e;
-      }
-
-      expect(err).to.exist;
-      expect(err.message).to.contain('Can not provide API key in the browser');
-    });
-
-    it('Should instantiate the RealtimeClient when "dangerouslyAllowAPIKeyInBrowser" is set', () => {
+    it('Should instantiate the RealtimeClient', () => {
       client = new RealtimeClient({
-        url: "wss://openai-hu-east-us2.openai.azure.com/openai/realtime?api-version=2024-10-01-preview&deployment=gpt-4o-realtime-preview&api-key=510d6cd694fa49efab5fb0eccb3e633f",
-        apiKey: "510d6cd694fa49efab5fb0eccb3e633f",
-        dangerouslyAllowAPIKeyInBrowser: true,
+        url: "wss://xxx.openai.azure.com/openai/realtime?api-version=2024-10-01-preview&deployment=gpt-4o-realtime-preview",
+        apiKey: "process.env.AZURE_OPENAI_API_KEY",
         debug,
       });
 
@@ -57,7 +30,7 @@ export async function run({ debug = false } = {}) {
       expect(client).to.exist;
       expect(client.realtime).to.exist;
       expect(client.conversation).to.exist;
-      expect(client.realtime.apiKey).to.equal("510d6cd694fa49efab5fb0eccb3e633f");
+      expect(client.realtime.apiKey).to.equal("process.env.AZURE_OPENAI_API_KEY");
     });
 
     describe('turn_end_mode: "client_decision"', () => {
