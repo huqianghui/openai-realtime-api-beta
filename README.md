@@ -21,9 +21,9 @@ $ npm i openai/openai-realtime-api-beta --save
 ```
 
 ```javascript
-import { RealtimeClient } from '@openai/realtime-api-beta';
+import { RealtimeClient } from '@huqianghui/realtime-api-beta';
 
-const client = new RealtimeClient({ apiKey: process.env.AZURE_OPENAI_API_KEY });
+const client = new RealtimeClient({url='wss://XXX.openai.azure.com/openai/realtime?api-version=2024-10-01-preview&deployment=gpt-4o-realtime-preview' ,apiKey: process.env.AZURE_OPENAI_API_KEY });
 
 // Can set parameters ahead of connecting, either separately or all at once
 client.updateSession({ instructions: 'You are a great, upbeat friend.' });
@@ -58,7 +58,7 @@ You can use this client directly from the browser in e.g. React or Vue apps.
 In order to instantiate the client in a browser environment, use:
 
 ```javascript
-import { RealtimeClient } from '@openai/realtime-api-beta';
+import { RealtimeClient } from '@huqiangui/realtime-api-beta';
 
 const client = new RealtimeClient({
   apiKey: process.env.AZURE_OPENAI_API_KEY,
