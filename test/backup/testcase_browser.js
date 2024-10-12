@@ -24,7 +24,8 @@ export async function run({ debug = false } = {}) {
 
       try {
         client = new RealtimeClient({
-          apiKey: process.env.OPENAI_API_KEY,
+          url: "wss://openai-hu-east-us2.openai.azure.com/openai/realtime?api-version=2024-10-01-preview&deployment=gpt-4o-realtime-preview&api-key=510d6cd694fa49efab5fb0eccb3e633f",
+          apiKey: "510d6cd694fa49efab5fb0eccb3e633f",
           debug,
         });
       } catch (e) {
@@ -37,7 +38,8 @@ export async function run({ debug = false } = {}) {
 
     it('Should instantiate the RealtimeClient when "dangerouslyAllowAPIKeyInBrowser" is set', () => {
       client = new RealtimeClient({
-        apiKey: process.env.OPENAI_API_KEY,
+        url: "wss://openai-hu-east-us2.openai.azure.com/openai/realtime?api-version=2024-10-01-preview&deployment=gpt-4o-realtime-preview&api-key=510d6cd694fa49efab5fb0eccb3e633f",
+        apiKey: "510d6cd694fa49efab5fb0eccb3e633f",
         dangerouslyAllowAPIKeyInBrowser: true,
         debug,
       });
@@ -55,7 +57,7 @@ export async function run({ debug = false } = {}) {
       expect(client).to.exist;
       expect(client.realtime).to.exist;
       expect(client.conversation).to.exist;
-      expect(client.realtime.apiKey).to.equal(process.env.OPENAI_API_KEY);
+      expect(client.realtime.apiKey).to.equal("510d6cd694fa49efab5fb0eccb3e633f");
     });
 
     describe('turn_end_mode: "client_decision"', () => {

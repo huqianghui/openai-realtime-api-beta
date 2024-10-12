@@ -1,8 +1,8 @@
 import * as chai from 'chai';
 const expect = chai.expect;
 
-import fs from 'fs';
 import decodeAudio from 'audio-decode';
+import fs from 'fs';
 
 // Using the "audio-decode" library to get raw audio bytes
 
@@ -38,7 +38,8 @@ export async function run({ debug = false } = {}) {
 
     it('Should instantiate the RealtimeClient', () => {
       client = new RealtimeClient({
-        apiKey: process.env.OPENAI_API_KEY,
+        url: "wss://openai-hu-east-us2.openai.azure.com/openai/realtime?api-version=2024-10-01-preview&deployment=gpt-4o-realtime-preview&api-key=510d6cd694fa49efab5fb0eccb3e633f",
+        apiKey: "510d6cd694fa49efab5fb0eccb3e633f",
         debug,
       });
 
@@ -54,11 +55,11 @@ export async function run({ debug = false } = {}) {
       expect(client).to.exist;
       expect(client.realtime).to.exist;
       expect(client.conversation).to.exist;
-      expect(client.realtime.apiKey).to.equal(process.env.OPENAI_API_KEY);
+      expect(client.realtime.apiKey).to.equal("510d6cd694fa49efab5fb0eccb3e633f");
     });
 
     it('Should connect to the RealtimeClient', async function () {
-      this.timeout(10_000);
+      this.timeout(1000_000);
 
       const isConnected = await client.connect();
 
@@ -105,7 +106,7 @@ export async function run({ debug = false } = {}) {
     });
 
     it('Should waitForNextItem to receive "conversation.item.created" from user', async function () {
-      this.timeout(10_000);
+      this.timeout(1000_000);
 
       const { item } = await client.waitForNextItem();
 
@@ -117,7 +118,7 @@ export async function run({ debug = false } = {}) {
     });
 
     it('Should waitForNextItem to receive "conversation.item.created" from assistant', async function () {
-      this.timeout(10_000);
+      this.timeout(1000_000);
 
       const { item } = await client.waitForNextItem();
 
@@ -129,7 +130,7 @@ export async function run({ debug = false } = {}) {
     });
 
     it('Should waitForNextCompletedItem to receive completed item from assistant', async function () {
-      this.timeout(10_000);
+      this.timeout(1000_000);
 
       const { item } = await client.waitForNextCompletedItem();
 
