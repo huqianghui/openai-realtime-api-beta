@@ -21,7 +21,7 @@ $ npm i openai/openai-realtime-api-beta --save
 ```
 
 ```javascript
-import { RealtimeClient } from '@huqianghui/realtime-api-beta';
+import { RealtimeClient } from '@openai/realtime-api-beta';
 
 const client = new RealtimeClient({url='wss://XXX.openai.azure.com/openai/realtime?api-version=2024-10-01-preview&deployment=gpt-4o-realtime-preview' ,apiKey: process.env.AZURE_OPENAI_API_KEY });
 
