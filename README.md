@@ -58,7 +58,7 @@ You can use this client directly from the browser in e.g. React or Vue apps.
 In order to instantiate the client in a browser environment, use:
 
 ```javascript
-import { RealtimeClient } from '@huqiangui/realtime-api-beta';
+import { RealtimeClient } from '@openai/realtime-api-beta';
 
 const client = new RealtimeClient({
   apiKey: process.env.AZURE_OPENAI_API_KEY,
